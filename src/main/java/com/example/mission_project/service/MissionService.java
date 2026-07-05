@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +20,8 @@ public class MissionService {
 
     public MissionResponse getTodayMission() {
 
-        LocalDate today = LocalDate.now();
+        // 한국 시간 기준 오늘 날짜
+        LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
 
         // 오늘 미션이 이미 존재하면 그대로 반환
         DailyMission dailyMission = dailyMissionRepository
